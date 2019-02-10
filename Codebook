@@ -52,7 +52,7 @@ summary(yob2015c)
  Class :character   Class :character   Class :character  
  Mode  :character   Mode  :character   Mode  :character
 
-###Variable 1 (repeat this section for all variables in the dataset)
+###Variables
 yob2015c - Cleaned data of 2015 kids names
 y2016 - Removed erroneous variables
 yob2016c - Cleaned data of 2016 kids names
