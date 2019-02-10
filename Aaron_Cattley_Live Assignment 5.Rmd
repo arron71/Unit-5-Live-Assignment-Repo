@@ -1,0 +1,94 @@
+---
+title: "Live Assignment 5"
+author: "Aaron Cattley"
+date: "February 9th, 2019"
+output: 
+  html_document:
+    keep_md: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+This is the Unit 5 Live Session Assignment.
+
+
+# Question 1: Data munging
+
+```{r, include = FALSE, cache=TRUE}
+library(XML)
+library(dplyr)
+library(tidyr)
+library(stringi)
+library(stringr)
+library(rvest)
+library(ggplot2)
+library(RCurl)
+library(data.table)
+library(reshape2)
+```
+
+```{r, cache=TRUE}
+#Create table of yob2016
+yob2016 <- read.table("C:/Users/aaron/Documents/SMU/Intro to Data Science/HW/Unit 5/MSDS-6306-Doing-Data-Science/Unit 5/yob2016.txt")
+
+#Separate the columns
+yob2016c <- yob2016 %>%
+  separate(V1, into=c("Name", "Gender", "Count"),sep=";")
+
+#Summary and Structure of the data frame
+summary(yob2016c)
+str(yob2016c)
+
+#Locate the duplicated name
+yob2016c[grep("yyy", yob2016c$Name),]
+
+#Remove the duplicated name
+y2016 <- yob2016c[-212,]
+```
+
+# Question 2: Data merging
+
+```{r, cache=TRUE}
+#Create table of yob2016
+yob2015 <- read.table("C:/Users/aaron/Documents/SMU/Intro to Data Science/HW/Unit 5/MSDS-6306-Doing-Data-Science/Unit 5/yob2015.txt")
+
+#Separate the columns
+y2015 <- yob2015 %>%
+  separate(V1, into=c("Name", "Gender", "Count"),sep=",")
+
+#Shw last ten rows and describe
+tail(y2015, 10)
+
+#All the names start with z, are boys, and have the exact same count
+
+#Merge the data frames by Name
+final <- inner_join(y2015, y2016, by=c("Name", "Gender"))
+colnames(final) <- c("Names", "Gender", "2015 Count", "2016 Count")
+head(final, 10)
+```
+
+# Question 3: Data Summary
+
+```{r, cache=TRUE}
+#Add the count columns
+final[,5] <- as.numeric(final[,3]) + as.numeric(final[,4])
+colnames(final) <- c("Names", "Gender", "2015 Count", "2016 Count", "Total")
+
+#Number of kids given popular names
+sum(final[,5])
+
+#Order by total
+final <- final[order(-final$Total),]
+head(final, 10)
+
+finalf <- final[grep("F", final$Gender),]
+head(finalf,10)
+
+write.csv(finalf, file = "Top_Ten_Girls_Names.csv")
+```
+
+# https://github.com/arron71/Unit-5-Live-Assignment-Repo
+
