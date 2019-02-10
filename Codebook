@@ -1,0 +1,64 @@
+title: "Live Assignment 5 Codebook"
+author: "Aaron Cattley"
+date: "2/9/19"
+
+
+## Project Description
+This contains tidy data of two separate raw files of kids names, that were cleaned and merged for example use.
+
+##Study design and data processing
+
+###Collection of the raw data
+Data was collected from the following github:
+https://github.com/BivinSadler/MSDS-6306-Doing-Data-Science.git/Unit 5
+
+###Notes on the original (raw) data 
+The two separate raw data files are separated by different parameters, a ";" and "," so please note that when 
+separating out columns
+
+##Creating the tidy datafile
+The columns will need to be separated in both files.
+
+###Guide to create the tidy data file
+Raw data files are separated by different parameters, a ";" and "," so please note that when 
+separating out columns
+The 2015 data has a duplicate name that ends in "yyy", so please be sure to remove it when tidying
+
+###Cleaning of the data
+Script separates columns, removes erroneous variables and names columns appropriately.  It also merges the data into
+one data frame which has been ordered.
+
+##Description of the variables in the tiny_data.txt file
+#Summary and Structure of the data frame
+summary(yob2016c)
+##      Name              Gender             Count          
+##  Length:32869       Length:32869       Length:32869      
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character
+str(yob2016c)
+## 'data.frame':    32869 obs. of  3 variables:
+##  $ Name  : chr  "Emma" "Olivia" "Ava" "Sophia" ...
+##  $ Gender: chr  "F" "F" "F" "F" ...
+##  $ Count : chr  "19414" "19246" "16237" "16070" ...
+
+str(yob2015c)
+'data.frame':	33063 obs. of  3 variables:
+ $ Name  : chr  "Emma" "Olivia" "Sophia" "Ava" ...
+ $ Gender: chr  "F" "F" "F" "F" ...
+ $ Count : chr  "20415" "19638" "17381" "16340" ...
+summary(yob2015c)
+     Name              Gender             Count          
+ Length:33063       Length:33063       Length:33063      
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character
+
+###Variable 1 (repeat this section for all variables in the dataset)
+yob2015c - Cleaned data of 2015 kids names
+y2016 - Removed erroneous variables
+yob2016c - Cleaned data of 2016 kids names
+final - Merged dataframes from both data sets
+
+Some information on the variable including:
+All variables manipulated are data frames
+
+@arron71
